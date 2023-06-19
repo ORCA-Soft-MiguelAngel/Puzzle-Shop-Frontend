@@ -6,7 +6,7 @@ interface MainLayoutProps {
 }
 
 const MainLayout: FunctionComponent<MainLayoutProps> = ({ children }) => (
-  <div>
+  <div className="">
     <Header />
     <div>{children}</div>
   </div>

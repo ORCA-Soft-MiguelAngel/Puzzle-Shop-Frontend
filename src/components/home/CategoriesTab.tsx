@@ -3,13 +3,17 @@ import { Tab } from "@headlessui/react";
 import classNames from "@/utils/classNames";
 import Products from "./products/Products";
 import Orders from "./orders/Orders";
-
-const categories = [
-  { type: "All Products", component: <Products /> },
-  { type: "My Orders", component: <Orders /> },
-];
+import { useAuth } from "@/hooks/useAuth";
 
 const CategoriesTab = () => {
+  const { isAuthenticated } = useAuth();
+
+  const categories = [{ type: "All Products", component: <Products /> }];
+
+  if (isAuthenticated) {
+    categories.push({ type: "My Orders", component: <Orders /> });
+  }
+
   return (
     <div>
       <Tab.Group>
@@ -36,7 +40,7 @@ const CategoriesTab = () => {
             <Tab.Panel
               key={`panel-${type}`}
               className={classNames(
-                "rounded-xl bg-white py-5",
+                "rounded-xl py-5",
                 "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
               )}
             >

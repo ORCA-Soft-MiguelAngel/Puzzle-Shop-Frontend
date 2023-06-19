@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onSearch: (searchTerm: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearchValue(value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSearch(searchValue);
+  };
+
   return (
-    <form className="xl:w-1/2 mx-auto">
+    <form className="xl:w-1/2 mx-auto" onSubmit={handleSubmit}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -18,8 +34,9 @@ const SearchBar = () => {
           type="search"
           id="default-search"
           className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Search Mockups, Logos..."
-          required
+          placeholder="Search by name, category or price"
+          value={searchValue}
+          onChange={handleInputChange}
         />
         <button
           type="submit"

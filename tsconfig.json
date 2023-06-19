@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "ESNext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -23,9 +23,12 @@
       "@/components/*": ["src/components/*"],
       "@/layouts/*": ["src/components/layouts/*"],
       "@/utils/*": ["src/utils/*"],
-      
+      "@/types/*": ["src/types/*"],
+      "@/api/*": ["src/api/*"],
       "@/pages/*": ["src/pages/*"],
-      "@/styles/*": ["src/styles/*"]
+      "@/styles/*": ["src/styles/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/contexts/*": ["src/contexts/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"]
   },
