@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthProvider } from "@/contexts/AuthContext";
 import PublicOnlyRoute from "./pages/auth/PublicOnlyRoute";
 import { ToastContainer } from "react-toastify";
+import ErrorPage from "@/pages/ErrorPage";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
           </PublicOnlyRoute>
         }
       />
+      <Route path="*" element={<ErrorPage />} />
     </Route>
   )
 );
