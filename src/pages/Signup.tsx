@@ -43,7 +43,7 @@ const Signup = () => {
     if (Object.values(newErrors).every((error) => !error)) {
       mutate(credentials, {
         onSuccess: () => {
-          navigate("/");
+          navigate("/login");
         },
       });
     }

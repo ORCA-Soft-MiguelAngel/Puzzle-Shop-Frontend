@@ -6,9 +6,10 @@ import { formatCurrency } from "@/utils/currency";
 
 interface Props {
   product: FakeProduct;
+  handleGoCart: (product: FakeProduct) => void;
 }
 
-const ProdcutCard: FunctionComponent<Props> = ({ product }) => {
+const ProdcutCard: FunctionComponent<Props> = ({ product, handleGoCart }) => {
   return (
     <div className="flex flex-col justify-between">
       <div className="relative">
@@ -47,7 +48,7 @@ const ProdcutCard: FunctionComponent<Props> = ({ product }) => {
         </div>
       </div>
       <div className="mt-6">
-        <Button>Add to bag</Button>
+        <Button onClick={() => handleGoCart(product)}>Add to bag</Button>
       </div>
     </div>
   );

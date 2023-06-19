@@ -1,4 +1,5 @@
 import { Currency, CurrencySymbol } from "@/types/Currency";
+import { Product } from "@/types/Order";
 
 export const CURRENCIES: Currency[] = [
   {
@@ -37,3 +38,27 @@ export const formatCurrency = (
 ): string => {
   return `${currency} ${convertCurrency(currency, price).toFixed(2)}`;
 };
+
+export const calculateTotalInterest = (product: Product): number => {
+  if (!product.quantity) return 0;
+
+  const interestRate = 0.15;
+  const totalPrice = product.price * product.quantity;
+  const interest = totalPrice * interestRate;
+  return interest;
+};
+
+export function calculateTotalProduct(product: Product): number {
+  if (!product.quantity) return 0;
+  return product.price * product.quantity + calculateTotalInterest(product);
+}
+
+export function calculateTotalOrder(products: Product[]): number {
+  let total = 0;
+
+  for (const product of products) {
+    total += calculateTotalProduct(product);
+  }
+
+  return total;
+}
